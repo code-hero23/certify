@@ -562,7 +562,7 @@ const ClientForm = () => {
                     {/* Signatures */}
                     <div style={{ 
                         position: 'absolute', 
-                        bottom: '45px', 
+                        bottom: '65px', 
                         left: '0', 
                         right: '0', 
                         display: 'flex', 
@@ -575,8 +575,8 @@ const ClientForm = () => {
                                 backgroundColor: 'rgba(255, 255, 255, 0.95)',
                                 border: '1px solid #d1d5db',
                                 borderBottom: '2.5px solid #ed1c24',
-                                height: '85px', 
-                                marginBottom: '12px', 
+                                height: '80px', 
+                                marginBottom: '10px', 
                                 position: 'relative',
                                 display: 'flex',
                                 alignItems: 'center',
