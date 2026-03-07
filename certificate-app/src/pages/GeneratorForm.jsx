@@ -47,9 +47,11 @@ const GeneratorForm = () => {
             if (response.ok) {
                 const data = await response.json();
                 setCertificates(data);
+            } else {
+                console.error(`Fetch failed with status: ${response.status}`);
             }
         } catch (error) {
-            console.error('Error fetching certificates:', error);
+            console.error('Network error fetching certificates:', error);
         } finally {
             setIsLoadingCerts(false);
         }
@@ -64,8 +66,9 @@ const GeneratorForm = () => {
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleGenerateLink = (e) => {
+    const handleGenerateLink = async (e) => {
         e.preventDefault();
+        setGeneratedLink('');
         
         // Find the signature path for the selected incharge
         const selectedIncharge = inchargeOptions.find(opt => opt.name === formData.installationIncharge);
@@ -74,10 +77,28 @@ const GeneratorForm = () => {
             inchargeSignature: selectedIncharge ? selectedIncharge.signature : ''
         };
 
-        // Encode data to base64 to pass in URL
-        const encodedData = btoa(JSON.stringify(dataToEncode));
-        const link = `${window.location.origin}/client-form?data=${encodedData}`;
-        setGeneratedLink(link);
+        try {
+            // Attempt to get a short link from the backend
+            const response = await fetch('/api/certificates/shorten', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ data: dataToEncode })
+            });
+
+            if (response.ok) {
+                const { code } = await response.json();
+                const link = `${window.location.origin}/client-form?s=${code}`;
+                setGeneratedLink(link);
+            } else {
+                throw new Error('Failed to shorten');
+            }
+        } catch (error) {
+            console.warn('Falling back to long URL:', error);
+            // Fallback to the original long base64 link if backend fails
+            const encodedData = btoa(JSON.stringify(dataToEncode));
+            const link = `${window.location.origin}/client-form?data=${encodedData}`;
+            setGeneratedLink(link);
+        }
     };
 
     return (

@@ -29,19 +29,41 @@ const ClientForm = () => {
     const certificateRef = useRef(null);
 
     useEffect(() => {
-        const params = new URLSearchParams(location.search);
-        const dataParam = params.get('data');
-        if (dataParam) {
-            try {
-                const decodedString = atob(dataParam);
-                const parsedData = JSON.parse(decodedString);
-                setClientData(parsedData);
-            } catch (err) {
-                setError('Invalid link data. Please request a new link.');
+        const fetchLinkData = async () => {
+            const params = new URLSearchParams(location.search);
+            const shortCode = params.get('s');
+            const encodedData = params.get('data');
+
+            if (shortCode) {
+                // Try to resolve the short link
+                try {
+                    const response = await fetch(`/api/certificates/s/${shortCode}`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        setClientData(data);
+                    } else {
+                        console.error('Failed to resolve short link');
+                        setError('Failed to load data from short link. Please try again or use the full link.');
+                    }
+                } catch (error) {
+                    console.error('Error fetching short link data:', error);
+                    setError('Error fetching data. Please check your connection or try again.');
+                }
+            } else if (encodedData) {
+                // Fallback to legacy base64 data
+                try {
+                    const decodedData = JSON.parse(atob(encodedData));
+                    setClientData(decodedData);
+                } catch (error) {
+                    console.error('Error decoding client data:', error);
+                    setError('Invalid link data. Please request a new link.');
+                }
+            } else {
+                setError('No data found in the URL. Please use the generated link.');
             }
-        } else {
-            setError('No data found in the URL. Please use the generated link.');
-        }
+        };
+
+        fetchLinkData();
     }, [location]);
 
     const handleFeedbackChange = (e) => {
