@@ -286,8 +286,8 @@ const ClientForm = () => {
                                 <label className="block text-sm font-semibold text-gray-700 mb-4">Kindly Rate the Conduct of Installation and the Team</label>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     {[
-                                        { value: 'Excellent', label: 'Excellent', sub: 'delivered more than expected' },
                                         { value: 'Good', label: 'Good', sub: 'but need improvements' },
+                                        { value: 'Excellent', label: 'Excellent', sub: 'delivered more than expected' },
                                         { value: 'Not great', label: 'Not great', sub: 'surely value for money' },
                                         { value: 'I am angry', label: 'I am angry', sub: "won't come back again" }
                                     ].map((option) => (
@@ -489,8 +489,8 @@ const ClientForm = () => {
                             <tbody>
                                 <tr>
                                     {[
-                                        { label: 'Excellent', desc: 'delivered more than expected' },
                                         { label: 'Good', desc: 'but need improvements' },
+                                        { label: 'Excellent', desc: 'delivered more than expected' },
                                         { label: 'Not great', desc: 'surely value for money' },
                                         { label: 'I am angry', desc: "won't come back again" }
                                     ].map((r) => (
