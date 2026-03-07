@@ -43,7 +43,7 @@ const GeneratorForm = () => {
     const fetchCertificates = async () => {
         setIsLoadingCerts(true);
         try {
-            const response = await fetch('http://localhost:5003/api/certificates');
+            const response = await fetch('/api/certificates');
             if (response.ok) {
                 const data = await response.json();
                 setCertificates(data);
@@ -243,7 +243,7 @@ const GeneratorForm = () => {
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             <a 
-                                                href={`http://localhost:5003${cert.file_path}`} 
+                                                href={cert.file_path} 
                                                 target="_blank" 
                                                 rel="noopener noreferrer"
                                                 className="inline-flex items-center px-3 py-1 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"

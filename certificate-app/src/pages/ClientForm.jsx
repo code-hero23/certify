@@ -123,11 +123,24 @@ const ClientForm = () => {
                         logging: true,
                         allowTaint: true,
                         backgroundColor: '#ffffff',
-                        imageTimeout: 15000,
+                        imageTimeout: 30000,
                         width: 1024,
                         height: 768,
+                        scrollX: 0,
+                        scrollY: 0,
                         windowWidth: 1024,
-                        windowHeight: 768
+                        windowHeight: 768,
+                        onclone: (clonedDoc) => {
+                            const clonedElement = clonedDoc.getElementById('certificate-capture-container');
+                            if (clonedElement) {
+                                clonedElement.style.position = 'relative';
+                                clonedElement.style.display = 'block';
+                                clonedElement.style.left = '0';
+                                clonedElement.style.top = '0';
+                                clonedElement.style.visibility = 'visible';
+                                clonedElement.style.opacity = '1';
+                            }
+                        }
                     });
 
                     const imgData = canvas.toDataURL('image/png');
@@ -151,7 +164,7 @@ const ClientForm = () => {
                     formData.append('installation_incharge', clientData.installationIncharge);
 
                     try {
-                        const response = await fetch('http://localhost:5003/api/certificates', {
+                        const response = await fetch('/api/certificates', {
                             method: 'POST',
                             body: formData
                         });
@@ -240,27 +253,52 @@ const ClientForm = () => {
                             </div>
 
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">Kindly Rate the Conduct of Installation and the Team</label>
+                                <label className="block text-sm font-semibold text-gray-700 mb-4">Kindly Rate the Conduct of Installation and the Team</label>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     {[
-                                        { value: 'Good', label: 'Good', sub: 'delivery more than expected' },
-                                        { value: 'Excellent', label: 'Excellent', sub: 'but need improvements' },
+                                        { value: 'Excellent', label: 'Excellent', sub: 'delivered more than expected' },
+                                        { value: 'Good', label: 'Good', sub: 'but need improvements' },
                                         { value: 'Not great', label: 'Not great', sub: 'surely value for money' },
-                                        { value: 'I am angry', label: 'I am angry', sub: 'won’t come back again' }
+                                        { value: 'I am angry', label: 'I am angry', sub: "won't come back again" }
                                     ].map((option) => (
-                                        <label key={option.value} className={`relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none ${feedbackData.rating === option.value ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-300'}`}>
-                                            <input type="radio" name="rating" value={option.value} onChange={handleFeedbackChange} className="sr-only" />
-                                            <span className="flex flex-1">
-                                                <span className="flex flex-col">
-                                                    <span className="block text-sm font-medium text-gray-900">{option.label}</span>
-                                                    <span className="mt-1 flex items-center text-sm text-gray-500">{option.sub}</span>
-                                                </span>
-                                            </span>
-                                            {feedbackData.rating === option.value && (
-                                                <svg className="h-5 w-5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                                                </svg>
-                                            )}
+                                        <label 
+                                            key={option.value} 
+                                            className={`relative flex cursor-pointer rounded-xl border-2 p-5 transition-all duration-200 group ${
+                                                feedbackData.rating === option.value 
+                                                ? 'border-red-500 bg-red-50 shadow-md' 
+                                                : 'border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
+                                            }`}
+                                        >
+                                            <input 
+                                                type="radio" 
+                                                name="rating" 
+                                                value={option.value} 
+                                                onChange={handleFeedbackChange} 
+                                                className="sr-only" 
+                                            />
+                                            <div className="flex items-start w-full gap-4">
+                                                <div className={`mt-1 flex-shrink-0 w-6 h-6 rounded border-2 flex items-center justify-center transition-colors ${
+                                                    feedbackData.rating === option.value 
+                                                    ? 'bg-red-500 border-red-500' 
+                                                    : 'bg-white border-gray-300 group-hover:border-gray-400'
+                                                }`}>
+                                                    {feedbackData.rating === option.value && (
+                                                        <svg className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="4">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                                        </svg>
+                                                    )}
+                                                </div>
+                                                <div className="flex flex-col">
+                                                    <span className={`block text-base font-bold transition-colors ${
+                                                        feedbackData.rating === option.value ? 'text-red-700' : 'text-gray-900'
+                                                    }`}>
+                                                        {option.label}
+                                                    </span>
+                                                    <span className="mt-1 text-sm text-gray-500 leading-snug">
+                                                        {option.sub}
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </label>
                                     ))}
                                 </div>
@@ -331,12 +369,12 @@ const ClientForm = () => {
                 backgroundColor: 'white'
             }}>
                 <div
+                    id="certificate-capture-container"
                     ref={certificateRef}
                     style={{
                         width: '1024px',
                         height: '768px',
                         backgroundColor: '#ffffff',
-                        border: '15px solid #f3f4f6',
                         fontFamily: "'Poppins', sans-serif",
                         position: 'relative',
                         boxSizing: 'border-box',
@@ -351,7 +389,7 @@ const ClientForm = () => {
                             alt="Background"
                             width="1024"
                             height="768"
-                            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.6, zIndex: 0 }}
+                            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 1, zIndex: 0 }}
                         />
                     )}
 
@@ -360,8 +398,8 @@ const ClientForm = () => {
                     <div style={{
                         position: 'absolute',
                         inset: '20px',
-                        backgroundColor: 'rgba(255, 255, 255, 0.85)',
-                        border: '2px solid #e5e7eb',
+                        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+                        border: '1.5px solid rgba(229, 231, 235, 0.5)',
                         pointerEvents: 'none',
                         zIndex: 1
                     }}></div>
@@ -412,17 +450,76 @@ const ClientForm = () => {
                         </div>
                     </div>
 
-                    {/* Rating Section */}
-                    <div style={{ textAlign: 'center', marginBottom: '20px', padding: '0 40px', position: 'relative', zIndex: 2 }}>
-                        <div style={{ fontSize: '14px', fontWeight: 'bold', color: '#111827', marginBottom: '10px' }}>Kindly Rate the Conduct of Installation and the Team</div>
-                        <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
-                            {['Good', 'Excellent', 'Not great', 'I am angry'].map((r) => (
-                                <div key={r} style={{ display: 'flex', alignItems: 'center', gap: '5px', padding: '5px 12px', border: feedbackData.rating === r ? '2px solid #e11d48' : '1px solid #d1d5db', borderRadius: '20px', backgroundColor: feedbackData.rating === r ? 'rgba(255, 241, 242, 0.9)' : 'rgba(255, 255, 255, 0.9)' }}>
-                                    <span style={{ fontSize: '12px', fontWeight: feedbackData.rating === r ? 'bold' : 'normal', color: feedbackData.rating === r ? '#e11d48' : '#374151' }}>{r}</span>
-                                    {feedbackData.rating === r && <span style={{ color: '#e11d48', fontWeight: 'bold' }}>✔</span>}
-                                </div>
-                            ))}
+                    {/* Rating Section - Checkbox Style with Descriptions */}
+                    <div style={{ padding: '0 30px', marginBottom: '25px', position: 'relative', zIndex: 2 }}>
+                        <div style={{ fontSize: '12px', fontWeight: '800', color: '#000000', marginBottom: '15px', textAlign: 'center', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                            Kindly Rate the Conduct of Installation and the Team
                         </div>
+                        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                            <tbody>
+                                <tr>
+                                    {[
+                                        { label: 'Excellent', desc: 'delivered more than expected' },
+                                        { label: 'Good', desc: 'but need improvements' },
+                                        { label: 'Not great', desc: 'surely value for money' },
+                                        { label: 'I am angry', desc: "won't come back again" }
+                                    ].map((r) => (
+                                        <td key={r.label} style={{ width: '25%', verticalAlign: 'top', padding: '0 5px' }}>
+                                            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+                                                {/* Checkbox Container */}
+                                                <div style={{ 
+                                                    minWidth: '22px', 
+                                                    width: '22px',
+                                                    height: '22px', 
+                                                    border: feedbackData.rating === r.label ? '2.5px solid #ed1c24' : '1.5px solid #666', 
+                                                    backgroundColor: '#fff',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                    position: 'relative',
+                                                    marginTop: '2px', // Precisely aligned with text top
+                                                    boxSizing: 'border-box'
+                                                }}>
+                                                    {feedbackData.rating === r.label && (
+                                                        <svg 
+                                                            viewBox="0 0 24 24" 
+                                                            fill="none" 
+                                                            stroke="#ed1c24" 
+                                                            strokeWidth="4.5" 
+                                                            strokeLinecap="round" 
+                                                            strokeLinejoin="round" 
+                                                            style={{ width: '13px', height: '13px' }}
+                                                        >
+                                                            <polyline points="20 6 9 17 4 12" />
+                                                        </svg>
+                                                    )}
+                                                </div>
+                                                {/* Text Container */}
+                                                <div style={{ flex: 1 }}>
+                                                    <div style={{ 
+                                                        fontSize: '14px', 
+                                                        fontWeight: '900', 
+                                                        color: feedbackData.rating === r.label ? '#ed1c24' : '#666', 
+                                                        marginBottom: '1px',
+                                                        lineHeight: '1.2'
+                                                    }}>
+                                                        {r.label}
+                                                    </div>
+                                                    <div style={{ 
+                                                        fontSize: '10px', 
+                                                        color: feedbackData.rating === r.label ? '#ed1c24' : '#888', 
+                                                        lineHeight: '1.2', 
+                                                        fontWeight: '500' 
+                                                    }}>
+                                                        {r.desc}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    ))}
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
 
                     {/* Certificate Text */}
