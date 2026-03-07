@@ -562,15 +562,15 @@ const ClientForm = () => {
                     {/* Signatures */}
                     <div style={{ 
                         position: 'absolute', 
-                        bottom: '35px', 
+                        bottom: '45px', 
                         left: '0', 
                         right: '0', 
                         display: 'flex', 
                         justifyContent: 'space-between', 
-                        padding: '0 80px', 
+                        padding: '0 60px', 
                         zIndex: 10 
                     }}>
-                        <div style={{ textAlign: 'center', width: '350px' }}>
+                        <div style={{ textAlign: 'center', width: '400px' }}>
                             <div style={{ 
                                 backgroundColor: 'rgba(255, 255, 255, 0.95)',
                                 border: '1px solid #d1d5db',
@@ -593,11 +593,11 @@ const ClientForm = () => {
                                     />
                                 )}
                             </div>
-                            <div style={{ fontSize: '13px', fontWeight: '800', color: '#111827', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                                SIGNATURE OF THE CLIENT ({clientData?.clientName || 'CLIENT'})
+                            <div style={{ fontSize: '12px', fontWeight: '800', color: '#111827', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: '1.4' }}>
+                                SIGNATURE OF THE CLIENT<br />({clientData?.clientName || 'CLIENT'})
                             </div>
                         </div>
-                        <div style={{ textAlign: 'center', width: '350px' }}>
+                        <div style={{ textAlign: 'center', width: '400px' }}>
                             <div style={{ 
                                 backgroundColor: 'rgba(255, 255, 255, 0.95)',
                                 border: '1px solid #d1d5db',
@@ -620,8 +620,8 @@ const ClientForm = () => {
                                     />
                                 )}
                             </div>
-                            <div style={{ fontSize: '13px', fontWeight: '800', color: '#111827', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                                SIGNATURE OF INSTALLATION INCHARGE ({clientData?.installationIncharge || 'IN-CHARGE'})
+                            <div style={{ fontSize: '12px', fontWeight: '800', color: '#111827', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: '1.4' }}>
+                                SIGNATURE OF INSTALLATION INCHARGE<br />({clientData?.installationIncharge || 'IN-CHARGE'})
                             </div>
                         </div>
                     </div>
