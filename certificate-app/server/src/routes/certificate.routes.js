@@ -89,4 +89,31 @@ router.get('/', async (req, res) => {
     }
 });
 
+// DELETE /api/certificates/:id - Delete a certificate
+router.delete('/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const certificate = await Certificate.findByPk(id);
+
+        if (!certificate) {
+            return res.status(404).json({ message: 'Certificate not found' });
+        }
+
+        // Optional: Delete the file from the filesystem to save space
+        const fs = require('fs');
+        const path = require('path');
+        const filePath = path.join(__dirname, '../../', certificate.file_path);
+        
+        if (fs.existsSync(filePath)) {
+            fs.unlinkSync(filePath);
+        }
+
+        await certificate.destroy();
+        res.json({ message: 'Certificate deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting certificate:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
 module.exports = router;

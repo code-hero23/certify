@@ -61,6 +61,25 @@ const GeneratorForm = () => {
         fetchCertificates();
     }, []);
 
+    const handleDeleteCertificate = async (id) => {
+        if (!window.confirm("Are you sure you want to delete this certificate? This action cannot be undone.")) return;
+        
+        try {
+            const response = await fetch(`/api/certificates/${id}`, {
+                method: 'DELETE',
+            });
+            if (response.ok) {
+                // Remove from state immediately to update UI
+                setCertificates(prev => prev.filter(cert => cert.id !== id));
+            } else {
+                alert("Failed to delete certificate.");
+            }
+        } catch (error) {
+            console.error('Error deleting certificate:', error);
+            alert("An error occurred while deleting.");
+        }
+    };
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
@@ -238,7 +257,7 @@ const GeneratorForm = () => {
                                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">In-Charge</th>
                                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rating</th>
                                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+                                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                                 </tr>
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-200">
@@ -262,7 +281,7 @@ const GeneratorForm = () => {
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {new Date(cert.createdAt).toLocaleDateString()}
                                         </td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
                                             <a 
                                                 href={cert.file_path} 
                                                 target="_blank" 
@@ -271,6 +290,12 @@ const GeneratorForm = () => {
                                             >
                                                 View PDF
                                             </a>
+                                            <button
+                                                onClick={() => handleDeleteCertificate(cert.id)}
+                                                className="inline-flex items-center px-3 py-1 bg-red-100 text-red-700 rounded-md hover:bg-red-200 transition"
+                                            >
+                                                Delete
+                                            </button>
                                         </td>
                                     </tr>
                                 ))}

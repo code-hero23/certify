@@ -119,6 +119,14 @@ const ClientForm = () => {
             alert("Please select a rating.");
             return;
         }
+        if (!feedbackData.recommendation || !feedbackData.recommendation.trim()) {
+            alert("Please tell us why you would recommend Cookscape.");
+            return;
+        }
+        if (!feedbackData.remarks || !feedbackData.remarks.trim()) {
+            alert("Please provide your remarks.");
+            return;
+        }
         if (sigCanvas.current.isEmpty()) {
             alert("Please provide your signature.");
             return;
