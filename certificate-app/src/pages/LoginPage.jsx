@@ -31,117 +31,96 @@ const LoginPage = () => {
     };
 
     return (
-        <div className="login-container">
-            <div className="login-card">
-                <h2>Admin Login</h2>
-                <p>Please enter your credentials to secure the app.</p>
-                {error && <div className="error-message">{error}</div>}
-                <form onSubmit={onSubmit}>
-                    <div className="form-group">
-                        <label>Username (Email)</label>
-                        <input
-                            type="text"
-                            name="username"
-                            value={username}
-                            onChange={onChange}
-                            required
-                            placeholder="admin@cookscape.com"
-                        />
+        <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8" style={{ fontFamily: "'Poppins', sans-serif" }}>
+            <div className="max-w-md w-full space-y-8 bg-white p-8 sm:p-10 rounded-2xl shadow-2xl border border-gray-100 transition-all duration-300 hover:shadow-3xl">
+                
+                <div className="flex flex-col items-center w-full">
+                    {/* Recreating the Cookscape Logo */}
+                    <div className="flex flex-col w-full max-w-[280px]">
+                        <div className="bg-[#007B4F] text-white text-[10px] sm:text-xs tracking-[0.25em] px-3 py-1 font-medium self-end -mb-0.5 z-10 w-4/5 text-center rounded-t-sm shadow-sm">
+                            INTERIORS AND BEYOND
+                        </div>
+                        <div className="bg-[#E60000] px-4 py-3 w-full text-center rounded-sm shadow-md">
+                            <h1 className="text-white text-4xl sm:text-4xl font-extrabold tracking-wider m-0">
+                                COOKSCAPE
+                            </h1>
+                        </div>
                     </div>
-                    <div className="form-group">
-                        <label>Password</label>
-                        <input
-                            type="password"
-                            name="password"
-                            value={password}
-                            onChange={onChange}
-                            required
-                            placeholder="••••••••"
-                        />
+                </div>
+
+                <div>
+                    <h2 className="mt-8 text-center text-2xl font-semibold text-gray-900">
+                        Welcome Back
+                    </h2>
+                    <p className="mt-2 text-center text-sm text-gray-500">
+                        Sign in to the Admin Portal
+                    </p>
+                </div>
+
+                {error && (
+                    <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-md animate-fade-in">
+                        <div className="flex">
+                            <div className="flex-shrink-0">
+                                <svg className="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                                </svg>
+                            </div>
+                            <div className="ml-3">
+                                <p className="text-sm text-red-700">{error}</p>
+                            </div>
+                        </div>
                     </div>
-                    <button type="submit" disabled={loading}>
-                        {loading ? 'Logging in...' : 'Login'}
-                    </button>
+                )}
+
+                <form className="mt-8 space-y-6" onSubmit={onSubmit}>
+                    <div className="space-y-4">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                            <input
+                                type="text"
+                                name="username"
+                                value={username}
+                                onChange={onChange}
+                                required
+                                className="appearance-none relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-400 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E60000] focus:border-transparent transition-colors sm:text-sm"
+                                placeholder="admin@cookscape.com"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                            <input
+                                type="password"
+                                name="password"
+                                value={password}
+                                onChange={onChange}
+                                required
+                                className="appearance-none relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-400 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E60000] focus:border-transparent transition-colors sm:text-sm"
+                                placeholder="••••••••"
+                            />
+                        </div>
+                    </div>
+
+                    <div>
+                        <button
+                            type="submit"
+                            disabled={loading}
+                            className={`group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white ${loading ? 'bg-red-400 cursor-not-allowed' : 'bg-[#E60000] hover:bg-red-700'} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#E60000] transition-colors shadow-md`}
+                        >
+                            {loading ? (
+                                <span className="flex items-center">
+                                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    Authenticating...
+                                </span>
+                            ) : (
+                                'Sign In'
+                            )}
+                        </button>
+                    </div>
                 </form>
             </div>
-
-            <style jsx>{`
-                .login-container {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    min-height: 100vh;
-                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                    padding: 20px;
-                }
-                .login-card {
-                    background: white;
-                    padding: 40px;
-                    border-radius: 12px;
-                    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-                    width: 100%;
-                    max-width: 400px;
-                }
-                .login-card h2 {
-                    margin-bottom: 10px;
-                    color: #333;
-                    text-align: center;
-                }
-                .login-card p {
-                    color: #666;
-                    text-align: center;
-                    margin-bottom: 30px;
-                }
-                .form-group {
-                    margin-bottom: 20px;
-                }
-                label {
-                    display: block;
-                    margin-bottom: 8px;
-                    font-weight: 500;
-                    color: #555;
-                }
-                input {
-                    width: 100%;
-                    padding: 12px;
-                    border: 1px solid #ddd;
-                    border-radius: 6px;
-                    font-size: 16px;
-                    transition: border-color 0.3s;
-                }
-                input:focus {
-                    outline: none;
-                    border-color: #667eea;
-                }
-                button {
-                    width: 100%;
-                    padding: 14px;
-                    background: #667eea;
-                    color: white;
-                    border: none;
-                    border-radius: 6px;
-                    font-size: 16px;
-                    font-weight: 600;
-                    cursor: pointer;
-                    transition: background 0.3s;
-                }
-                button:hover {
-                    background: #5a67d8;
-                }
-                button:disabled {
-                    background: #a3bffa;
-                    cursor: not-allowed;
-                }
-                .error-message {
-                    background: #fff5f5;
-                    color: #c53030;
-                    padding: 10px;
-                    border-radius: 6px;
-                    margin-bottom: 20px;
-                    text-align: center;
-                    border: 1px solid #feb2b2;
-                }
-            `}</style>
         </div>
     );
 };
