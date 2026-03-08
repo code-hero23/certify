@@ -7,7 +7,8 @@ import ClientForm from './pages/ClientForm';
 import './index.css';
 
 // Set base URL for axios
-axios.defaults.baseURL = 'http://localhost:5003';
+// This dynamically connects to the backend on port 5003 using the current server's IP/domain
+axios.defaults.baseURL = import.meta.env.VITE_API_URL || `${window.location.protocol}//${window.location.hostname}:5003`;
 
 // Axios Interceptor for token
 axios.interceptors.request.use(
