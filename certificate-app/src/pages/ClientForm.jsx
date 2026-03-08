@@ -405,7 +405,9 @@ const ClientForm = () => {
                         position: 'relative',
                         boxSizing: 'border-box',
                         color: '#111827',
-                        overflow: 'hidden'
+                        overflow: 'hidden',
+                        display: 'flex',
+                        flexDirection: 'column'
                     }}
                 >
                     {/* Background Image Template */}
@@ -431,7 +433,7 @@ const ClientForm = () => {
                     }}></div>
 
                     {/* Header */}
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', padding: '25px 40px 0 40px', position: 'relative', zIndex: 2 }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px', padding: '30px 40px 0 40px', position: 'relative', zIndex: 2 }}>
                         <div style={{ textAlign: 'left' }}>
                             <h1 style={{ margin: 0, color: '#e11d48', fontSize: '28px', fontWeight: 'bold', letterSpacing: '1px' }}>CERTIFICATE OF INSTALLATION</h1>
                         </div>
@@ -445,7 +447,7 @@ const ClientForm = () => {
                     </div>
 
                     {/* Project Details Grid */}
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px 30px', marginBottom: '25px', padding: '0 40px', position: 'relative', zIndex: 2 }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '15px 30px', marginBottom: '15px', padding: '0 40px', position: 'relative', zIndex: 2, alignItems: 'start' }}>
                         {[
                             { label: 'Name of the client:', value: clientData?.clientName },
                             { label: 'Project Name:', value: clientData?.projectName },
@@ -459,7 +461,7 @@ const ClientForm = () => {
                         ].map((item, idx) => (
                             <div key={idx} style={{ borderBottom: '1.5px solid #e5e7eb', paddingBottom: '4px' }}>
                                 <div style={{ fontSize: '10px', color: '#6b7280', textTransform: 'uppercase', marginBottom: '3px', fontWeight: '600' }}>{item.label}</div>
-                                <div style={{ fontSize: '14px', fontWeight: 'bold', color: '#111827' }}>{item.value || 'N/A'}</div>
+                                <div style={{ fontSize: '14px', fontWeight: 'bold', color: '#111827', wordBreak: 'break-word', whiteSpace: 'pre-wrap' }}>{item.value || 'N/A'}</div>
                             </div>
                         ))}
                     </div>
@@ -477,7 +479,7 @@ const ClientForm = () => {
                     </div>
 
                     {/* Rating Section - Checkbox Style with Descriptions */}
-                    <div style={{ padding: '0 30px', marginBottom: '25px', position: 'relative', zIndex: 2 }}>
+                    <div style={{ padding: '0 30px', marginBottom: '15px', position: 'relative', zIndex: 2 }}>
                         <div style={{ fontSize: '12px', fontWeight: '800', color: '#000000', marginBottom: '15px', textAlign: 'center', textTransform: 'uppercase', letterSpacing: '1px' }}>
                             Kindly Rate the Conduct of Installation and the Team
                         </div>
@@ -549,7 +551,7 @@ const ClientForm = () => {
                     </div>
 
                     {/* Certificate Text */}
-                    <div style={{ textAlign: 'center', marginBottom: '20px', padding: '0 40px', position: 'relative', zIndex: 2 }}>
+                    <div style={{ textAlign: 'center', marginBottom: '5px', padding: '0 40px', position: 'relative', zIndex: 2 }}>
                         <p style={{ fontSize: '14px', margin: '0 0 3px 0', color: '#374151' }}>I am pleased to Certify that the</p>
                         <h2 style={{ fontSize: '18px', fontWeight: 'bold', color: '#e11d48', margin: '3px 0' }}>COOKSCAPE KITCHEN / WARDROBE SYSTEM</h2>
                         <p style={{ fontSize: '14px', margin: '3px 0', color: '#374151' }}>has been installed in our Home to our Satisfaction</p>
@@ -557,10 +559,8 @@ const ClientForm = () => {
 
                     {/* Signatures */}
                     <div style={{ 
-                        position: 'absolute', 
-                        bottom: '65px', 
-                        left: '0', 
-                        right: '0', 
+                        marginTop: 'auto',
+                        marginBottom: '35px',
                         display: 'flex', 
                         justifyContent: 'space-between', 
                         padding: '0 60px', 
@@ -579,13 +579,14 @@ const ClientForm = () => {
                                 justifyContent: 'center',
                                 padding: '8px',
                                 borderRadius: '6px',
-                                boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
+                                boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
+                                overflow: 'hidden'
                             }}>
                                 {finalSignature && (
                                     <img 
                                         src={finalSignature} 
                                         alt="Client Signature" 
-                                        style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} 
+                                        style={{ width: '100%', height: '100%', objectFit: 'contain' }} 
                                     />
                                 )}
                             </div>
@@ -598,21 +599,22 @@ const ClientForm = () => {
                                 backgroundColor: 'rgba(255, 255, 255, 0.95)',
                                 border: '1px solid #d1d5db',
                                 borderBottom: '2.5px solid #ed1c24',
-                                height: '85px', 
-                                marginBottom: '12px', 
+                                height: '80px', 
+                                marginBottom: '10px', 
                                 position: 'relative',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
                                 padding: '8px',
                                 borderRadius: '6px',
-                                boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
+                                boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
+                                overflow: 'hidden'
                             }}>
                                 {certificateAssets.inchargeSignature && (
                                     <img 
                                         src={certificateAssets.inchargeSignature} 
                                         alt="Incharge Signature" 
-                                        style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} 
+                                        style={{ width: '100%', height: '100%', objectFit: 'contain' }} 
                                     />
                                 )}
                             </div>
