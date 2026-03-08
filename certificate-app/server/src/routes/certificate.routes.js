@@ -4,6 +4,7 @@ const upload = require('../utils/fileUpload');
 const Certificate = require('../models/Certificate');
 const ShortLink = require('../models/ShortLink');
 const crypto = require('crypto');
+const auth = require('../utils/authMiddleware');
 
 // POST /api/certificates/shorten - Create a short link
 router.post('/shorten', async (req, res) => {
@@ -44,7 +45,7 @@ router.get('/s/:code', async (req, res) => {
 });
 
 // POST /api/certificates - Upload PDF and save metadata
-router.post('/', upload.single('pdf'), async (req, res) => {
+router.post('/', [auth, upload.single('pdf')], async (req, res) => {
     try {
         if (!req.file) {
             return res.status(400).json({ message: 'No PDF file uploaded' });
@@ -90,7 +91,7 @@ router.get('/', async (req, res) => {
 });
 
 // DELETE /api/certificates/:id - Delete a certificate
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
     try {
         const { id } = req.params;
         const certificate = await Certificate.findByPk(id);

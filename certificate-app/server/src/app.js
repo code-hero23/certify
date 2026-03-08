@@ -12,6 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
+app.use('/api/auth', require('./routes/auth.routes'));
 app.use('/api/certificates', require('./routes/certificate.routes'));
 
 // Static files for uploads
