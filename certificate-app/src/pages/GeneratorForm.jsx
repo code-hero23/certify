@@ -17,9 +17,20 @@ const GeneratorForm = () => {
     });
 
     const inchargeOptions = [
-        { name: 'John Doe', signature: '/signatures/john_doe.png' },
-        { name: 'Jane Smith', signature: '/signatures/jane_smith.png' },
-        { name: 'Arun Kumar', signature: '/signatures/arun_kumar.png' }
+        { name: 'AARON RATHIK RAPHAEL A', signature: '/signatures/AARON RATHIK RAPHAEL A.png' },
+        { name: 'Aravind Raj Kumar', signature: '/signatures/Aravind Raj Kumar.png' },
+        { name: 'Arun babu', signature: '/signatures/Arun babu.png' },
+        { name: 'Balaji G', signature: '/signatures/Balaji G.png' },
+        { name: 'Hamsa A', signature: '/signatures/Hamsa A.png' },
+        { name: 'Jothimani', signature: '/signatures/Jothimani.png' },
+        { name: 'M rahul Raj', signature: '/signatures/M rahul Raj.png' },
+        { name: 'SATHISH KUMAR A', signature: '/signatures/SATHISH KUMAR A.png' },
+        { name: 'Santhosh R', signature: '/signatures/Santhosh R.png' },
+        { name: 'Shaiju', signature: '/signatures/Shaiju.png' },
+        { name: 'Sivaraman.M', signature: '/signatures/Sivaraman.M.png' },
+        { name: 'Venkateshwaran.S', signature: '/signatures/Venkateshwaran.S.png' },
+        { name: 'Vijay', signature: '/signatures/Vijay.png' },
+        { name: 'prem', signature: '/signatures/prem.png' }
     ];
 
     const [generatedLink, setGeneratedLink] = useState('');
