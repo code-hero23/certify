@@ -60,12 +60,20 @@ const GeneratorForm = () => {
         <div className="min-h-screen bg-gray-50 flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl w-full space-y-8 bg-white p-10 rounded-xl shadow-lg border border-gray-100">
                 <div className="flex flex-col items-center relative">
-                    <button 
-                        onClick={() => { localStorage.removeItem('token'); navigate('/login'); }}
-                        className="absolute top-0 right-0 text-sm text-gray-500 hover:text-red-500 transition-colors"
-                    >
-                        Logout
-                    </button>
+                    <div className="absolute top-0 right-0 flex space-x-4">
+                        <button 
+                            onClick={() => navigate('/certificates')}
+                            className="text-sm font-medium text-gray-600 hover:text-[#E60000] transition-colors"
+                        >
+                            View Certificates
+                        </button>
+                        <button 
+                            onClick={() => { localStorage.removeItem('token'); navigate('/login'); }}
+                            className="text-sm text-gray-500 hover:text-red-500 transition-colors"
+                        >
+                            Logout
+                        </button>
+                    </div>
                     <img src="/logo.jpg" alt="Cookscape Logo" className="h-16 mb-4 object-contain" />
                     <h2 className="mt-2 text-center text-3xl font-extrabold text-gray-900 tracking-tight">
                         Certificate Link Generator

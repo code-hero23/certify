@@ -4,6 +4,7 @@ import axios from 'axios';
 import LoginPage from './pages/LoginPage';
 import GeneratorForm from './pages/GeneratorForm';
 import ClientForm from './pages/ClientForm';
+import CertificatesList from './pages/CertificatesList';
 import './index.css';
 
 // Set base URL for axios to support Nginx reverse proxy
@@ -38,6 +39,14 @@ function App() {
           element={
             <PrivateRoute>
               <GeneratorForm />
+            </PrivateRoute>
+          } 
+        />
+        <Route 
+          path="/certificates" 
+          element={
+            <PrivateRoute>
+              <CertificatesList />
             </PrivateRoute>
           } 
         />
