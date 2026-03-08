@@ -6,9 +6,8 @@ import GeneratorForm from './pages/GeneratorForm';
 import ClientForm from './pages/ClientForm';
 import './index.css';
 
-// Set base URL for axios
-// This dynamically connects to the backend on port 5003 using the current server's IP/domain
-axios.defaults.baseURL = import.meta.env.VITE_API_URL || `${window.location.protocol}//${window.location.hostname}:5003`;
+// Set base URL for axios to support Nginx reverse proxy
+axios.defaults.baseURL = import.meta.env.VITE_API_URL || '';
 
 // Axios Interceptor for token
 axios.interceptors.request.use(
