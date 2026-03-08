@@ -7,7 +7,7 @@ import ClientForm from './pages/ClientForm';
 import './index.css';
 
 // Set base URL for axios
-axios.defaults.baseURL = 'http://localhost:5000';
+axios.defaults.baseURL = 'http://localhost:5003';
 
 // Axios Interceptor for token
 axios.interceptors.request.use(
