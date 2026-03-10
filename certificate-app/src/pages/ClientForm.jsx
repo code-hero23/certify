@@ -433,21 +433,21 @@ const ClientForm = () => {
                     }}></div>
 
                     {/* Header */}
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px', padding: '30px 40px 0 40px', position: 'relative', zIndex: 2 }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px', padding: '25px 40px 0 40px', position: 'relative', zIndex: 2 }}>
                         <div style={{ textAlign: 'left' }}>
-                            <h1 style={{ margin: 0, color: '#e11d48', fontSize: '28px', fontWeight: 'bold', letterSpacing: '1px' }}>CERTIFICATE OF INSTALLATION</h1>
+                            <h1 style={{ margin: 0, color: '#e11d48', fontSize: '26px', fontWeight: 'bold', letterSpacing: '1px' }}>CERTIFICATE OF INSTALLATION</h1>
                         </div>
                         {certificateAssets.logo && (
                             <img 
                                 src={certificateAssets.logo} 
                                 alt="Logo" 
-                                style={{ height: '65px', width: 'auto', objectFit: 'contain', display: 'block' }} 
+                                style={{ height: '55px', width: 'auto', objectFit: 'contain', display: 'block' }} 
                             />
                         )}
                     </div>
 
                     {/* Project Details Grid */}
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '15px 30px', marginBottom: '15px', padding: '0 40px', position: 'relative', zIndex: 2, alignItems: 'start' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '10px 30px', marginBottom: '10px', padding: '0 40px', position: 'relative', zIndex: 2, alignItems: 'start' }}>
                         {[
                             { label: 'Name of the client:', value: clientData?.clientName },
                             { label: 'Project Name:', value: clientData?.projectName },
@@ -459,28 +459,28 @@ const ClientForm = () => {
                             { label: 'Date of Delivery:', value: clientData?.deliveryDate },
                             { label: 'Date of Completion:', value: clientData?.completionDate },
                         ].map((item, idx) => (
-                            <div key={idx} style={{ borderBottom: '1.5px solid #e5e7eb', paddingBottom: '4px' }}>
-                                <div style={{ fontSize: '10px', color: '#6b7280', textTransform: 'uppercase', marginBottom: '3px', fontWeight: '600' }}>{item.label}</div>
-                                <div style={{ fontSize: '14px', fontWeight: 'bold', color: '#111827', wordBreak: 'break-word', whiteSpace: 'pre-wrap' }}>{item.value || 'N/A'}</div>
+                            <div key={idx} style={{ borderBottom: '1.5px solid #e5e7eb', paddingBottom: '2px' }}>
+                                <div style={{ fontSize: '9px', color: '#6b7280', textTransform: 'uppercase', marginBottom: '2px', fontWeight: '600' }}>{item.label}</div>
+                                <div style={{ fontSize: '13px', fontWeight: 'bold', color: '#111827', wordBreak: 'break-word', whiteSpace: 'pre-wrap' }}>{item.value || 'N/A'}</div>
                             </div>
                         ))}
                     </div>
 
                     {/* Feedback Section */}
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', marginBottom: '15px', padding: '0 40px', position: 'relative', zIndex: 2 }}>
-                        <div style={{ border: '1px solid #e5e7eb', borderRadius: '8px', padding: '10px', backgroundColor: 'rgba(249, 250, 251, 0.9)' }}>
-                            <div style={{ fontSize: '10px', fontWeight: 'bold', color: '#374151', marginBottom: '4px' }}>Why I will recommend Cookscape?</div>
-                            <div style={{ fontSize: '11px', lineHeight: '1.3', fontStyle: 'italic', color: '#4b5563' }}>"{feedbackData.recommendation || 'No recommendation provided.'}"</div>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', marginBottom: '10px', padding: '0 40px', position: 'relative', zIndex: 2 }}>
+                        <div style={{ border: '1px solid #e5e7eb', borderRadius: '8px', padding: '8px', backgroundColor: 'rgba(249, 250, 251, 0.9)', maxHeight: '70px', overflow: 'hidden' }}>
+                            <div style={{ fontSize: '9px', fontWeight: 'bold', color: '#374151', marginBottom: '2px' }}>Why I will recommend Cookscape?</div>
+                            <div style={{ fontSize: '10px', lineHeight: '1.2', fontStyle: 'italic', color: '#4b5563', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}>"{feedbackData.recommendation || 'No recommendation provided.'}"</div>
                         </div>
-                        <div style={{ border: '1px solid #e5e7eb', borderRadius: '8px', padding: '10px', backgroundColor: 'rgba(249, 250, 251, 0.9)' }}>
-                            <div style={{ fontSize: '10px', fontWeight: 'bold', color: '#374151', marginBottom: '4px' }}>Remarks:</div>
-                            <div style={{ fontSize: '11px', lineHeight: '1.3', fontStyle: 'italic', color: '#4b5563' }}>"{feedbackData.remarks || 'No remarks provided.'}"</div>
+                        <div style={{ border: '1px solid #e5e7eb', borderRadius: '8px', padding: '8px', backgroundColor: 'rgba(249, 250, 251, 0.9)', maxHeight: '70px', overflow: 'hidden' }}>
+                            <div style={{ fontSize: '9px', fontWeight: 'bold', color: '#374151', marginBottom: '2px' }}>Remarks:</div>
+                            <div style={{ fontSize: '10px', lineHeight: '1.2', fontStyle: 'italic', color: '#4b5563', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}>"{feedbackData.remarks || 'No remarks provided.'}"</div>
                         </div>
                     </div>
 
                     {/* Rating Section - Checkbox Style with Descriptions */}
-                    <div style={{ padding: '0 30px', marginBottom: '15px', position: 'relative', zIndex: 2 }}>
-                        <div style={{ fontSize: '12px', fontWeight: '800', color: '#000000', marginBottom: '15px', textAlign: 'center', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                    <div style={{ padding: '0 30px', marginBottom: '10px', position: 'relative', zIndex: 2 }}>
+                        <div style={{ fontSize: '11px', fontWeight: '800', color: '#000000', marginBottom: '10px', textAlign: 'center', textTransform: 'uppercase', letterSpacing: '1px' }}>
                             Kindly Rate the Conduct of Installation and the Team
                         </div>
                         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
@@ -496,10 +496,10 @@ const ClientForm = () => {
                                             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
                                                 {/* Checkbox Container */}
                                                 <div style={{ 
-                                                    minWidth: '22px', 
-                                                    width: '22px',
-                                                    height: '22px', 
-                                                    border: feedbackData.rating === r.label ? '2.5px solid #ed1c24' : '1.5px solid #666', 
+                                                    minWidth: '20px', 
+                                                    width: '20px',
+                                                    height: '20px', 
+                                                    border: feedbackData.rating === r.label ? '2px solid #ed1c24' : '1.5px solid #666', 
                                                     backgroundColor: '#fff',
                                                     display: 'flex',
                                                     alignItems: 'center',
@@ -516,7 +516,7 @@ const ClientForm = () => {
                                                             strokeWidth="4.5" 
                                                             strokeLinecap="round" 
                                                             strokeLinejoin="round" 
-                                                            style={{ width: '13px', height: '13px' }}
+                                                            style={{ width: '12px', height: '12px' }}
                                                         >
                                                             <polyline points="20 6 9 17 4 12" />
                                                         </svg>
@@ -525,7 +525,7 @@ const ClientForm = () => {
                                                 {/* Text Container */}
                                                 <div style={{ flex: 1 }}>
                                                     <div style={{ 
-                                                        fontSize: '14px', 
+                                                        fontSize: '13px', 
                                                         fontWeight: '900', 
                                                         color: feedbackData.rating === r.label ? '#ed1c24' : '#666', 
                                                         marginBottom: '1px',
@@ -534,7 +534,7 @@ const ClientForm = () => {
                                                         {r.label}
                                                     </div>
                                                     <div style={{ 
-                                                        fontSize: '10px', 
+                                                        fontSize: '9px', 
                                                         color: feedbackData.rating === r.label ? '#ed1c24' : '#888', 
                                                         lineHeight: '1.2', 
                                                         fontWeight: '500' 
@@ -552,32 +552,32 @@ const ClientForm = () => {
 
                     {/* Certificate Text */}
                     <div style={{ textAlign: 'center', marginBottom: '5px', padding: '0 40px', position: 'relative', zIndex: 2 }}>
-                        <p style={{ fontSize: '14px', margin: '0 0 3px 0', color: '#374151' }}>I am pleased to Certify that the</p>
-                        <h2 style={{ fontSize: '18px', fontWeight: 'bold', color: '#e11d48', margin: '3px 0' }}>COOKSCAPE KITCHEN / WARDROBE SYSTEM</h2>
-                        <p style={{ fontSize: '14px', margin: '3px 0', color: '#374151' }}>has been installed in our Home to our Satisfaction</p>
+                        <p style={{ fontSize: '13px', margin: '0 0 2px 0', color: '#374151' }}>I am pleased to Certify that the</p>
+                        <h2 style={{ fontSize: '16px', fontWeight: 'bold', color: '#e11d48', margin: '2px 0' }}>COOKSCAPE KITCHEN / WARDROBE SYSTEM</h2>
+                        <p style={{ fontSize: '13px', margin: '2px 0', color: '#374151' }}>has been installed in our Home to our Satisfaction</p>
                     </div>
 
                     {/* Signatures */}
                     <div style={{ 
                         marginTop: 'auto',
-                        marginBottom: '35px',
+                        marginBottom: '30px',
                         display: 'flex', 
                         justifyContent: 'space-between', 
                         padding: '0 60px', 
                         zIndex: 10 
                     }}>
-                        <div style={{ textAlign: 'center', width: '400px' }}>
+                        <div style={{ textAlign: 'center', width: '380px' }}>
                             <div style={{ 
                                 backgroundColor: 'rgba(255, 255, 255, 0.95)',
                                 border: '1px solid #d1d5db',
                                 borderBottom: '2.5px solid #ed1c24',
-                                height: '80px', 
-                                marginBottom: '10px', 
+                                height: '70px', 
+                                marginBottom: '8px', 
                                 position: 'relative',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                padding: '8px',
+                                padding: '6px',
                                 borderRadius: '6px',
                                 boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
                                 overflow: 'hidden'
@@ -590,22 +590,22 @@ const ClientForm = () => {
                                     />
                                 )}
                             </div>
-                            <div style={{ fontSize: '12px', fontWeight: '800', color: '#111827', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: '1.4' }}>
+                            <div style={{ fontSize: '11px', fontWeight: '800', color: '#111827', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: '1.3' }}>
                                 SIGNATURE OF THE CLIENT<br />({clientData?.clientName || 'CLIENT'})
                             </div>
                         </div>
-                        <div style={{ textAlign: 'center', width: '400px' }}>
+                        <div style={{ textAlign: 'center', width: '380px' }}>
                             <div style={{ 
                                 backgroundColor: 'rgba(255, 255, 255, 0.95)',
                                 border: '1px solid #d1d5db',
                                 borderBottom: '2.5px solid #ed1c24',
-                                height: '80px', 
-                                marginBottom: '10px', 
+                                height: '70px', 
+                                marginBottom: '8px', 
                                 position: 'relative',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                padding: '8px',
+                                padding: '6px',
                                 borderRadius: '6px',
                                 boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
                                 overflow: 'hidden'
@@ -618,7 +618,7 @@ const ClientForm = () => {
                                     />
                                 )}
                             </div>
-                            <div style={{ fontSize: '12px', fontWeight: '800', color: '#111827', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: '1.4' }}>
+                            <div style={{ fontSize: '11px', fontWeight: '800', color: '#111827', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: '1.3' }}>
                                 SIGNATURE OF INSTALLATION INCHARGE<br />({clientData?.installationIncharge || 'IN-CHARGE'})
                             </div>
                         </div>
